@@ -1,0 +1,33 @@
+function createScheduledTask
+{
+  $TaskName = "WinServerInfo"
+  $TaskExists = Get-ScheduledTask | Where-Object TaskName -eq $TaskName 
+
+   #Check if ScheuledTask Exists
+   if($TaskExists) 
+     {
+       echo "Schedule Task $taskname already exists! Not going to create the task"
+     }#end if 
+
+   else 
+     #If it does not exist create the scheuledtask
+       {   
+         $action = New-ScheduledTaskAction -Execute "C:\WinServerInfo\WinServerInfo2k8.exe" -Argument "inventory"
+         $trigger = New-ScheduledTaskTrigger -Daily -At 9am
+         Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "WinServerInfo" -Description "WinServerInfo for T.A.R.D.I.S Inventory"
+       } #end else
+}  #End CreateScheuledTask function
+
+function deployWinServerInfo
+{
+    $TARGETDIR = 'C:\WinServerInfo'
+      if(Test-Path -Path $TARGETDIR )
+        {
+          echo "Folder $TARGETDIR exists will not deploy bash"
+        } #end if
+      else
+       {
+         xcopy /E /Y \\172.25.0.36\public\WinServerInfo c:\WinServerInfo\
+         C:\WinServerInfo\WinServerInfo2k8.exe deploy
+       } #end else
+} #end function
