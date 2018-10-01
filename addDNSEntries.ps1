@@ -87,16 +87,3 @@ function removeDNSEntries
 		} #end for loop
 
 } #end function
-
-a
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-
