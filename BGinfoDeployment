@@ -27,6 +27,7 @@ function deployWinServerInfo
         } #end if
       else
        {
+         mkdir c:\WinServerInfo
          xcopy /E /Y \\172.25.0.36\public\WinServerInfo c:\WinServerInfo\
          C:\WinServerInfo\WinServerInfo2k8.exe deploy
        } #end else
