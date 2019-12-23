@@ -53,7 +53,7 @@ function createNewVM
 			$VMS = get-VM | %{ write-host .; $_}
 		
 			$Windows_Cust = New-OSCustomizationSpec -Name $($vm.Name) -FullName "Administrator" -AdminPassword "P@88w0rd" -TimeZone "035" -OrgName 
-"Test" -Domain "dataintensity.com" -DomainUsername $diUsername -DomainPassword $diPassword –DnsServer “172.18.4.110","172.18.4.111" -DnsSuffix "dataintensity.com" 
+"Test" -Domain "domain.com" -DomainUsername $diUsername -DomainPassword $diPassword –DnsServer “172.18.4.110","172.18.4.111" -DnsSuffix "domain.com" 
 –NamingScheme VM –OSType Windows
 		
 			# Apply the customization first check that the template does not exist
